@@ -285,7 +285,7 @@
 			/>
 			<DeploymentTool
 				ForceDirty="-1"
-				RemoteDirectory="\Program Files\Html5 Browser"
+				RemoteDirectory="\Program Files\Intermec Browser\plugins"
 				RegisterOutput="0"
 				AdditionalFiles=""
 			/>

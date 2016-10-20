@@ -8,9 +8,15 @@ HTML5 Browser
 
 This plugin offers a NPAPI object to retrieve the Model Code, RSSI, Battery Level of a supported device.
 
+## Installation
+
+Copy the plugin DLL to the plugins directory of the browser. For example "\Program Files\HTML5 Browser\plugins" or "\Program Files\Enterprise Browser\plugins". No further installation needed. Just use the embedd tag and the DevInfo object as described below.
+
 ## HTML code
 
-First create a new embedding
+Note that the plugin may not work if the html is not loaded from a web server.
+
+First create a new embedding.
 
     </HEAD>
     <embed id="embed1" type="application/x-itc-devinfo" hidden=true> </embed>
