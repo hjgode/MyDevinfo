@@ -63,3 +63,31 @@ The callback function has to be named `onBattRssiUpdate` and uses two arguments:
     function onBattRssiUpdate(batt, rssi){
        //do something with the supplied values
     }
+
+## Remark
+
+If the object will not inialize correctly during HTML loading, you may use a delayed initialisation to autload the object. For example:
+
+    <HEAD>
+    ...
+    <script>
+    var devinfoObj = null;
+    function olinit() {
+        if (devinfoObj == null) {
+            devinfoObj = new MyDevinfo();
+            if (devinfoObj == null) {
+                alert('devinfo object NOT created');
+            }
+        }
+        else {
+            alert('devinfo object already created');
+        }
+    }
+    
+    </script> 
+    <embed id="embed1" type="application/x-itc-devinfo" hidden=true> </embed> 
+    
+    </HEAD>
+    <!-- creating the object automatically must be delayed -->
+    <BODY onload="setTimeout('olinit()', 1000);">
+    ...
