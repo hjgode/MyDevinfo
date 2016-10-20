@@ -2,7 +2,7 @@
 <VisualStudioProject
 	ProjectType="Visual C++"
 	Version="9,00"
-	Name="MySensor"
+	Name="MyDevinfo"
 	ProjectGUID="{719350EA-9FCB-4D6B-B833-ABDA5647DC01}"
 	RootNamespace="MySensor"
 	Keyword="Win32Proj"
