@@ -1,0 +1,61 @@
+
+<HTML> 
+<HEAD> 
+<meta name="viewport" content="width=240, initial-scale=1, maximum-scale=1, minimum-scale=1">
+<style>
+html *
+{
+   font-size: 1em !important;
+}
+</style>
+<TITLE>NPAPI Sample: Devinfo</TITLE> 
+<script> 
+
+var devinfoObj = null;
+
+function onBattRssiUpdate(batt, rssi)
+{
+	//alert(newOutput);
+    document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
+    document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
+}
+
+function update() {
+    document.getElementById("ModelCode").innerHTML = devinfoObj.modelCode;
+    document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
+    document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
+}
+
+function olinit() {
+    if (devinfoObj == null) {
+        devinfoObj = new MyDevinfo();
+        if (devinfoObj == null) {
+            alert('devinfo object NOT created');
+        }
+        else {
+            document.getElementById("ModelCode").innerHTML = devinfoObj.modelCode;
+            document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
+            document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
+            devinfoObj.pollInterval = 30000; //update all 30 seconds
+            devinfoObj.monitor(true);
+        }
+    }
+    else {
+        alert('devinfo object already created');
+    }
+}
+
+</script> 
+
+</HEAD>
+<!-- creating the object automatically must be delayed -->
+<BODY onload="setTimeout('olinit()', 3000);">
+<embed id="embed1" type="application/x-itc-devinfo" hidden=true> </embed> 
+<h2>NPAPI Sample: DevInfo</h2> 
+<h2>Properties</h2>
+ModelCode:<div id="ModelCode"></div><br>
+Battery:<div id="Battery"></div><br>
+RSSI:<div id="Rssi"></div><br>
+<input type=button value="update" onclick="update();" />
+</BODY>
+</HTML> 

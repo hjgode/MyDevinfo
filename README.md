@@ -66,6 +66,8 @@ The callback function has to be named `onBattRssiUpdate` and uses two arguments:
 
 ## Remark
 
+Normally place the embed object inside the `<body>` tag.
+
 If the object will not inialize correctly during HTML loading, you may use a delayed initialisation to autload the object. For example:
 
     <HEAD>

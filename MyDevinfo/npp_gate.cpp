@@ -194,7 +194,7 @@ NPError	NPP_GetValue(NPP instance, NPPVariable variable, void *value)
 		*((char **)value) = "My Plugin";
 		break;
 	case NPPVpluginDescriptionString:
-		*((char **)value) = "Sample NPAPI Plugin for use with Motorola Solutions RhoElements";
+		*((char **)value) = "Sample NPAPI Plugin";
 		break;
 	case NPPVpluginScriptableNPObject:
 		if (pluginInfo->iPluginType == 0)

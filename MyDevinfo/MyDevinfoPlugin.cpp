@@ -9,9 +9,23 @@
 #include "battery.h"
 #include "devinfo.h"
 
+/*
+properties
+	monitor				enable/disable periodic callback
+	pollInterval		callback interval in ms
+	currentValue		obsolete, unused
+	
+	currentRSSIValue	returns current RSSI as dBm (ie: -45)
+	currentBatteryLevel	returns current battery life percent (0-100)
+	modelCode			returns model code as string (ie "CK3XAA")
+
+callback methods
+	onBattRssiUpdate(batt, rssi){}
+	addDevinfoOutput(string){}
+*/
+
 //  These are the method / property names our plugin object will export
 static NPIdentifier sMonitor_id;
-
 
 static NPIdentifier sPollInterval_id;
 static NPIdentifier sCurrentValue_id;
@@ -23,12 +37,15 @@ static NPIdentifier sModelCode_id;
 
 static NPObject * AllocateMyDevinfoPluginObject(NPP npp, NPClass *aClass)
 {
+	DEBUGMSG(1, (L"AllocateMyDevinfoPluginObject()...\n"));
 	//  Called in response to NPN_CreateObject
 	MyDevinfoPluginObject* obj = new MyDevinfoPluginObject(npp);
 	//  Setting the default properties of the created object.
+	
 	obj->m_iPollInterval = 3000;
 	obj->m_iCurrentValue = 0;
 
+	obj->m_iCurrentBatteryLevel=0;
 	obj->m_iCurrentRSSIValue=0;
 
 	obj->m_hStopSensorMonitor = CreateEvent(NULL, FALSE, FALSE, NULL);
@@ -58,7 +75,7 @@ DECLARE_NPOBJECT_CLASS_WITH_BASE(MyDevinfoPluginObject,
 bool MyDevinfoPluginObject::Construct(const NPVariant *args, uint32_t argCount,
                                      NPVariant *result)
 {
-	
+	DEBUGMSG(1, (L"Construct()...\n"));
 	//  Where the JS Object is created, called when we say:
 	//  var myObj = new MyDevinfo();
 	bool bRetVal = false;
@@ -330,7 +347,7 @@ CMyDevinfoPlugin::CMyDevinfoPlugin(NPP pNPInstance) :
   m_bInitialized(FALSE),
   m_pScriptableObject(NULL)
 {
-	
+	DEBUGMSG(1, (L"CMyDevinfoPlugin()...\n"));
   	// Must initialise this before getting NPNVPluginElementNPObject, as it'll
 	// call back into our GetValue method and require a valid plugin.
 	pNPInstance->pdata = this;
@@ -404,7 +421,7 @@ void MyDevinfoPluginObject::MessageToUser(char* szMessage)
 	NPObject *sWindowObj;
 	NPN_GetValue(mNpp, NPNVWindowNPObject, &sWindowObj);
 	//  Populate 'functionval' with the name of our function
-	NPN_GetProperty(mNpp, sWindowObj, NPN_GetStringIdentifier("addSensorOutput"), &functionval);
+	NPN_GetProperty(mNpp, sWindowObj, NPN_GetStringIdentifier("addDevinfoOutput"), &functionval);
 	NPVariant arg;
 	if (NPVARIANT_TO_OBJECT(functionval) == 0)
 		return;

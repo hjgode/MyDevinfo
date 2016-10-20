@@ -512,6 +512,15 @@
 			DeploymentContent="true"
 			>
 		</File>
+		<File
+			RelativePath="..\MyDevinfo_simple.htm"
+			DeploymentContent="true"
+			>
+		</File>
+		<File
+			RelativePath="..\README.md"
+			>
+		</File>
 	</Files>
 	<Globals>
 	</Globals>
