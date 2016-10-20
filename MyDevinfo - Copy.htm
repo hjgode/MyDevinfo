@@ -1,0 +1,178 @@
+
+<HTML> 
+<HEAD> 
+<TITLE>NPAPI Sample: Sensor</TITLE> 
+<script> 
+
+var tempObj = null;
+var pressureObj = null;
+
+function fnCreateObject(whichObj)
+{
+	if (whichObj == 'temperature')
+		if (tempObj == null)
+		{
+			tempObj = new MySensor();
+			tempObj.sensorType = 'temperature';
+		}
+		else
+			alert('Temperature sensor already created');
+	else if (whichObj == 'pressure')
+		if (pressureObj == null)
+		{
+			pressureObj = new MySensor();
+			pressureObj.sensorType = 'pressure';
+		}
+		else
+			alert('Pressure sensor already created');
+}
+
+function fnMonitorSensor(whichSensor, isChecked)
+{
+	if (whichSensor == 'temperature')
+	{
+		if (tempObj == null)
+		{
+			alert('You have not Created the Sensor');
+			theForm.cb_tempSensor.checked = false;
+		}
+		else
+		{
+			tempObj.monitor(isChecked);
+		}
+	}
+	else if (whichSensor == 'pressure')
+	{
+		if (pressureObj == null)
+		{
+			alert('You have not Created the Sensor');
+			theForm.cb_pressureSensor.checked = false;
+		}
+		else
+		{
+			pressureObj.monitor(isChecked);
+		}
+	}
+}
+
+function fnSetPollInterval(whichSensor, iInterval)
+{	
+	if (whichSensor == 'temperature')
+	{
+		if (tempObj == null)
+		{
+			alert('You have not Created the Sensor');
+			theForm.cb_tempSensor.checked = false;
+		}
+		else
+		{
+			tempObj.pollInterval = iInterval;
+		}
+	}
+	else if (whichSensor == 'pressure')
+	{
+		if (pressureObj == null)
+		{
+			alert('You have not Created the Sensor');
+			theForm.cb_pressureSensor.checked = false;
+		}
+		else
+		{
+			pressureObj.pollInterval = iInterval;
+		}
+	}
+}
+
+function fnRetrieveValue(whichSensor)
+{	
+	if (whichSensor == 'temperature')
+	{
+		if (tempObj == null)
+			alert('You have not Created the Sensor');
+		else
+		{
+		    addSensorOutput('Current Temp: ' + tempObj.currentValue + ' Kelvin');
+		    addSensorOutput('Current RSSI: ' + tempObj.currentRSSIValue + ' db');
+		    addSensorOutput('Current Battery: ' + tempObj.currentBatteryLevel + ' %');
+		    addSensorOutput('Modelcode: ' + tempObj.modelCode);
+		}
+	}
+	else if (whichSensor == 'pressure')
+	{
+		if (pressureObj == null)
+			alert('You have not Created the Sensor');
+		else
+		{
+			addSensorOutput('Current Pressure: ' + pressureObj.currentValue + ' Pascals');
+		}
+	}
+}
+
+
+//function bar(arg)
+//{
+ /// document.getElementById("divReturnValue").innerHTML += "<p>" + "function bar(" + arg + ") called!" + "</p>";
+// 
+//  return 4;
+//}
+
+function addSensorOutput(newOutput)
+{
+	//alert(newOutput);
+	document.getElementById("sensorOutput").value = newOutput + "\n" + document.getElementById("sensorOutput").value;
+	//sensorDiv.innerHTML = newOutput + "<br>" + sensorDiv.innerHTML;
+}
+
+function onBattRssiUpdate(batt, rssi)
+{
+	//alert(newOutput);
+    document.getElementById("sensorOutput").value = "Batt:" + batt + "\n" + "RSSI:" + rssi + "\n" + document.getElementById("sensorOutput").value;
+	//sensorDiv.innerHTML = newOutput + "<br>" + sensorDiv.innerHTML;
+}
+</script> 
+
+</HEAD>
+<embed id="embed1" type="application/x-itc-devinfo" hidden=true> </embed> 
+<BODY> 
+<center> 
+<h1>NPAPI Sample: Sensor</h1> 
+</center> 
+
+This page demonstrates the  use of NPAPI in RhoElements by way of a "Sensor" example.
+<form id='theForm'>
+<table border=1>
+<tr><td valign="top">
+Temperature Sensor:<br>
+<input type=button value="Create" onclick='fnCreateObject("temperature")'> 
+Started? <input type="checkbox" name="cb_tempSensor" onclick="fnMonitorSensor('temperature', theForm.cb_tempSensor.checked);"></input><br>
+<input type=button value="Get Current Value" onclick='fnRetrieveValue("temperature")'> <br>
+Poll Interval:
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('temperature', 1000);">1000 ms</input>
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('temperature', 3000);" checked>3000 ms</input>
+
+</td></tr>
+<tr><td valign="top">
+Pressure Sensor:<br>
+<input type=button value="Create" onclick='fnCreateObject("pressure")'> 
+Started? <input type="checkbox" name="cb_pressureSensor" onclick="fnMonitorSensor('pressure', theForm.cb_pressureSensor.checked);"></input><br>
+<input type=button value="Get Current Value" onclick='fnRetrieveValue("pressure")'> <br>
+Poll Interval:
+	<input type="radio" name="pressurePoll" onclick="fnSetPollInterval('pressure', 1000);">1000 ms</input>
+	<input type="radio" name="pressurePoll" onclick="fnSetPollInterval('pressure', 3000);" checked>3000 ms</input>
+
+</td></tr>
+<tr><td valign="top">
+Messages from Sensors (NPAPI):<br>
+<textarea rows="7" cols="40" id='sensorOutput'></textarea>
+<div id="sensorDiv"></div>
+</td></tr>
+</table>
+</form>
+<br> 
+<a href="javascript:location.reload();">Refresh the page</a>
+<input type=button value="Test" onclick='addSensorOutput("pressure")'> 
+
+
+
+</BODY> 
+</HTML> 

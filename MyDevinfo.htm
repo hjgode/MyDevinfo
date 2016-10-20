@@ -1,0 +1,166 @@
+
+<HTML> 
+<HEAD> 
+<meta name="viewport" content="width=240, initial-scale=1, maximum-scale=1, minimum-scale=1">
+<style>
+html *
+{
+   font-size: 1em !important;
+}
+</style>
+<TITLE>NPAPI Sample: Devinfo</TITLE> 
+<script> 
+
+var devinfoObj = null;
+
+function fnCreateObject(whichObj)
+{
+	if (whichObj == 'devinfo'){
+	    if (devinfoObj == null) {
+	        devinfoObj = new MyDevinfo();
+	        devinfoObj.myType = 'devinfo';
+	    }
+	    else {
+	        alert('devinfo object already created');
+	    }
+	}
+}
+
+function fnMonitorDevInfo(whichObject, isChecked)
+{
+	if (whichObject == 'devinfo')
+	{
+		if (devinfoObj == null)
+		{
+			alert('You have not Created a devinfo object');
+			theForm.cb_devinfo.checked = false;
+		}
+		else
+		{
+			devinfoObj.monitor(isChecked);
+		}
+	}
+}
+
+function fnSetPollInterval(whichObject, iInterval)
+{	
+	if (whichObject == 'devinfo')
+	{
+		if (devinfoObj == null)
+		{
+			alert('You have not Created the Sensor');
+			theForm.cb_devinfo.checked = false;
+		}
+		else
+		{
+			devinfoObj.pollInterval = iInterval;
+		}
+	}
+}
+
+function fnRetrieveValue(whichObject)
+{	
+	if (whichObject == 'devinfo')
+	{
+		if (devinfoObj == null)
+			alert('You have not Created the Devinfo object');
+		else
+		{
+		    addSensorOutput('Current RSSI: ' + devinfoObj.currentRSSIValue + ' db');
+		    addSensorOutput('Current Battery: ' + devinfoObj.currentBatteryLevel + ' %');
+		    addSensorOutput('Modelcode: ' + devinfoObj.modelCode);
+		}
+	}
+}
+
+function fnRetrieveModelCode() {
+		if (devinfoObj == null)
+			alert('You have not Created the Devinfo object');
+		else {
+		    //document.getElementById("ModelCode").innerHTML = devinfoObj.modelCode
+		    document.getElementById("fld_modellcode").value = devinfoObj.modelCode;
+		}
+}
+function fnRetrieveBattery() {
+		if (devinfoObj == null)
+			alert('You have not Created the Devinfo object');
+		else {
+		    document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel
+		}
+}
+function fnRetrieveRssi() {
+		if (devinfoObj == null)
+			alert('You have not Created the Devinfo object');
+		else {
+		    document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue
+		}
+}
+
+function addSensorOutput(newOutput)
+{
+	//alert(newOutput);
+	document.getElementById("devinfoOutput").value = newOutput + "\n" + document.getElementById("devinfoOutput").value;
+}
+
+function onBattRssiUpdate(batt, rssi)
+{
+	//alert(newOutput);
+    document.getElementById("devinfoOutput").value = "Batt:" + batt + "\n" + "RSSI:" + rssi + "\n" + document.getElementById("devinfoOutput").value;
+}
+
+function olinit() {
+    if (devinfoObj == null) {
+        devinfoObj = new MyDevinfo();
+        if (devinfoObj == null) {
+            alert('devinfo object NOT created');
+        }
+        devinfoObj.myType = 'devinfo';
+    }
+    else {
+        alert('devinfo object already created');
+    }
+}
+
+</script> 
+<embed id="embed1" type="application/x-itc-devinfo" hidden=true> </embed> 
+
+</HEAD>
+<!-- creating the object automatically must be delayed -->
+<BODY onload="setTimeout('olinit()', 1000);"> 
+<center> 
+<h2>NPAPI Sample: DevInfo</h2> 
+</center> 
+This page demonstrates the  use of NPAPI in HTML5 by way of a "devinfo" example.
+<form id='theForm'>
+<table border=1>
+<tr><td valign="top">
+DevInfo:<br>
+<input type=button value="Create" onclick='fnCreateObject("devinfo")'> 
+Started? <input type="checkbox" name="cb_devinfo" onclick="fnMonitorDevInfo('devinfo', theForm.cb_devinfo.checked);"></input><br>
+<input type=button value="Get Current Values" onclick='fnRetrieveValue("devinfo")'> <br>
+Poll Interval:<br>
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('devinfo', 1000);">1000 ms</input>
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('devinfo', 3000);" checked>3000 ms</input>
+
+</td></tr>
+<tr><td valign="top">
+Messages from Devinfo (NPAPI):<br>
+<textarea rows="7" cols="40" id='devinfoOutput'></textarea>
+<div id="devinfoDiv"></div>
+</td></tr>
+</table>
+</form>
+<br> 
+<h2>Properties</h2>
+<input type=button value="Model Code" onclick='fnRetrieveModelCode()'>
+<input type=text value="..." id="fld_modellcode" readonly=readonly/>
+<div id="ModelCode"></div><br>
+
+<input type=button value="Battery" onclick='fnRetrieveBattery()'><div id="Battery"></div><br>
+<input type=button value="Rssi" onclick='fnRetrieveRssi()'><div id="Rssi"></div><br>
+
+<a href="javascript:location.reload();">Refresh the page</a>
+<input type=button value="Test" onclick='addSensorOutput("devinfo")'> 
+
+</BODY> 
+</HTML> 
