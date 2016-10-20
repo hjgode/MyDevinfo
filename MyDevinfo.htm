@@ -13,63 +13,52 @@ html *
 
 var devinfoObj = null;
 
-function fnCreateObject(whichObj)
+function fnCreateObject()
 {
-	if (whichObj == 'devinfo'){
-	    if (devinfoObj == null) {
-	        devinfoObj = new MyDevinfo();
-	        devinfoObj.myType = 'devinfo';
-	    }
-	    else {
-	        alert('devinfo object already created');
-	    }
-	}
+    if (devinfoObj == null) {
+        devinfoObj = new MyDevinfo();
+        devinfoObj.myType = 'devinfo';
+    }
+    else {
+        alert('devinfo object already created');
+    }
 }
 
-function fnMonitorDevInfo(whichObject, isChecked)
+function fnMonitorDevInfo(isChecked)
 {
-	if (whichObject == 'devinfo')
+	if (devinfoObj == null)
 	{
-		if (devinfoObj == null)
-		{
-			alert('You have not Created a devinfo object');
-			theForm.cb_devinfo.checked = false;
-		}
-		else
-		{
-			devinfoObj.monitor(isChecked);
-		}
+		alert('You have not Created a devinfo object');
+		theForm.cb_devinfo.checked = false;
+	}
+	else
+	{
+		devinfoObj.monitor(isChecked);
 	}
 }
 
-function fnSetPollInterval(whichObject, iInterval)
+function fnSetPollInterval(iInterval)
 {	
-	if (whichObject == 'devinfo')
+	if (devinfoObj == null)
 	{
-		if (devinfoObj == null)
-		{
-			alert('You have not Created the Sensor');
-			theForm.cb_devinfo.checked = false;
-		}
-		else
-		{
-			devinfoObj.pollInterval = iInterval;
-		}
+		alert('You have not Created the Sensor');
+		theForm.cb_devinfo.checked = false;
+	}
+	else
+	{
+		devinfoObj.pollInterval = iInterval;
 	}
 }
 
-function fnRetrieveValue(whichObject)
+function fnRetrieveValue()
 {	
-	if (whichObject == 'devinfo')
+	if (devinfoObj == null)
+		alert('You have not Created the Devinfo object');
+	else
 	{
-		if (devinfoObj == null)
-			alert('You have not Created the Devinfo object');
-		else
-		{
-		    addSensorOutput('Current RSSI: ' + devinfoObj.currentRSSIValue + ' db');
-		    addSensorOutput('Current Battery: ' + devinfoObj.currentBatteryLevel + ' %');
-		    addSensorOutput('Modelcode: ' + devinfoObj.modelCode);
-		}
+	    addSensorOutput('Current RSSI: ' + devinfoObj.currentRSSIValue + ' db');
+	    addSensorOutput('Current Battery: ' + devinfoObj.currentBatteryLevel + ' %');
+	    addSensorOutput('Modelcode: ' + devinfoObj.modelCode);
 	}
 }
 
@@ -114,7 +103,6 @@ function olinit() {
         if (devinfoObj == null) {
             alert('devinfo object NOT created');
         }
-        devinfoObj.myType = 'devinfo';
     }
     else {
         alert('devinfo object already created');
@@ -135,12 +123,12 @@ This page demonstrates the  use of NPAPI in HTML5 by way of a "devinfo" example.
 <table border=1>
 <tr><td valign="top">
 DevInfo:<br>
-<input type=button value="Create" onclick='fnCreateObject("devinfo")'> 
-Started? <input type="checkbox" name="cb_devinfo" onclick="fnMonitorDevInfo('devinfo', theForm.cb_devinfo.checked);"></input><br>
-<input type=button value="Get Current Values" onclick='fnRetrieveValue("devinfo")'> <br>
+<input type=button value="Create" onclick='fnCreateObject()'> 
+Started? <input type="checkbox" name="cb_devinfo" onclick="fnMonitorDevInfo(theForm.cb_devinfo.checked);"></input><br>
+<input type=button value="Get Current Values" onclick='fnRetrieveValue()'> <br>
 Poll Interval:<br>
-	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('devinfo', 1000);">1000 ms</input>
-	<input type="radio" name="tempPoll" onclick="fnSetPollInterval('devinfo', 3000);" checked>3000 ms</input>
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval(1000);">1000 ms</input>
+	<input type="radio" name="tempPoll" onclick="fnSetPollInterval(3000);" checked>3000 ms</input>
 
 </td></tr>
 <tr><td valign="top">
@@ -160,7 +148,7 @@ Messages from Devinfo (NPAPI):<br>
 <input type=button value="Rssi" onclick='fnRetrieveRssi()'><div id="Rssi"></div><br>
 
 <a href="javascript:location.reload();">Refresh the page</a>
-<input type=button value="Test" onclick='addSensorOutput("devinfo")'> 
+<input type=button value="Test" onclick='addSensorOutput()'> 
 
 </BODY> 
 </HTML> 

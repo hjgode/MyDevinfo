@@ -40,14 +40,14 @@
 // Implementation of plugin entry points (NPP_*)
 // most are just empty stubs for this particular plugin 
 //
-#include "MySensorPlugin.h"
+#include "MyDevinfoPlugin.h"
 #include "../Common/npapi_common.h"
 #include <stddef.h>
 #include <stdio.h>
 
 #include <windows.h>
 
-static CMySensorPlugin* pMySensorPlugin = NULL;
+static CMyDevinfoPlugin* pMyDevinfoPlugin = NULL;
 
 char* NPP_GetMIMEDescription(void)
 {
@@ -85,13 +85,13 @@ NPError NPP_New(NPMIMEType pluginType,
 
   if (strcmp(pluginType, "application/x-itc-devinfo") == 0)
   {
-	  CMySensorPlugin * pMySensorPlugin = new CMySensorPlugin(instance);
-	  if(pMySensorPlugin == NULL)
+	  CMyDevinfoPlugin * pMyDevinfoPlugin = new CMyDevinfoPlugin(instance);
+	  if(pMyDevinfoPlugin == NULL)
 		return NPERR_OUT_OF_MEMORY_ERROR;
 
 	  CPluginInfo* pluginInfoObject = new CPluginInfo();
 		pluginInfoObject->iPluginType = 0;
-		pluginInfoObject->pPlugin = (void *)pMySensorPlugin;
+		pluginInfoObject->pPlugin = (void *)pMyDevinfoPlugin;
 	  instance->pdata = (void *)pluginInfoObject;
   }
   return rv;
@@ -110,9 +110,9 @@ NPError NPP_Destroy (NPP instance, NPSavedData** save)
 	CPluginInfo * pPluginInfo = (CPluginInfo *)instance->pdata;
 	if(pPluginInfo != NULL) 
 	{
-		CMySensorPlugin * pMySensorPlugin = (CMySensorPlugin *)pPluginInfo->pPlugin;
-		pMySensorPlugin->shut();
-		delete pMySensorPlugin;
+		CMyDevinfoPlugin * pMyDevinfoPlugin = (CMyDevinfoPlugin *)pPluginInfo->pPlugin;
+		pMyDevinfoPlugin->shut();
+		delete pMyDevinfoPlugin;
 		delete pPluginInfo;
 	}		
 	return rv;
@@ -138,28 +138,28 @@ NPError NPP_SetWindow (NPP instance, NPWindow* pNPWindow)
 
 	if (pPluginInfo && pPluginInfo->iPluginType == 0)
 	{
-		CMySensorPlugin* pMySensorPlugin = (CMySensorPlugin*)pPluginInfo->pPlugin;
+		CMyDevinfoPlugin* pMyDevinfoPlugin = (CMyDevinfoPlugin*)pPluginInfo->pPlugin;
 		// window just created
-		if(!pMySensorPlugin->isInitialized()) 
+		if(!pMyDevinfoPlugin->isInitialized()) 
 		{ 
-			if(!pMySensorPlugin->init(pNPWindow)) 
+			if(!pMyDevinfoPlugin->init(pNPWindow)) 
 			{
-				delete pMySensorPlugin;
-				pMySensorPlugin = NULL;
+				delete pMyDevinfoPlugin;
+				pMyDevinfoPlugin = NULL;
 				return NPERR_MODULE_LOAD_FAILED_ERROR;
 			}
 		}
 		// window goes away
-		if((pNPWindow->window == NULL) && pMySensorPlugin->isInitialized())
-			return pMySensorPlugin->SetWindow(pNPWindow);
+		if((pNPWindow->window == NULL) && pMyDevinfoPlugin->isInitialized())
+			return pMyDevinfoPlugin->SetWindow(pNPWindow);
 
 		// window resized?
-		if(pMySensorPlugin->isInitialized() && (pNPWindow->window != NULL))
-			return pMySensorPlugin->SetWindow(pNPWindow);
+		if(pMyDevinfoPlugin->isInitialized() && (pNPWindow->window != NULL))
+			return pMyDevinfoPlugin->SetWindow(pNPWindow);
 
 		// this should not happen, nothing to do
-		if((pNPWindow->window == NULL) && !pMySensorPlugin->isInitialized())
-			return pMySensorPlugin->SetWindow(pNPWindow);
+		if((pNPWindow->window == NULL) && !pMyDevinfoPlugin->isInitialized())
+			return pMyDevinfoPlugin->SetWindow(pNPWindow);
 	}
 
 	return rv;
@@ -199,8 +199,8 @@ NPError	NPP_GetValue(NPP instance, NPPVariable variable, void *value)
 	case NPPVpluginScriptableNPObject:
 		if (pluginInfo->iPluginType == 0)
 		{
-			CMySensorPlugin* pMySensorPlugin = (CMySensorPlugin*)pluginInfo->pPlugin;
-			*(NPObject **)value = pMySensorPlugin->GetScriptableObject();
+			CMyDevinfoPlugin* pMyDevinfoPlugin = (CMyDevinfoPlugin*)pluginInfo->pPlugin;
+			*(NPObject **)value = pMyDevinfoPlugin->GetScriptableObject();
 		}
 		break;
 	default:
@@ -304,8 +304,8 @@ NPObject *NPP_GetScriptableInstance(NPP instance)
 	{
 		if (pPluginInfo->iPluginType == 0)
 		{
-			CMySensorPlugin* pMySensorPlugin = (CMySensorPlugin*)pPluginInfo->pPlugin;
-			npobj = pMySensorPlugin->GetScriptableObject();
+			CMyDevinfoPlugin* pMyDevinfoPlugin = (CMyDevinfoPlugin*)pPluginInfo->pPlugin;
+			npobj = pMyDevinfoPlugin->GetScriptableObject();
 		}
 	}
 	return npobj;
