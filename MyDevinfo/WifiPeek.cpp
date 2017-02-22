@@ -51,9 +51,11 @@ bool retval;
 			dwRet=0;
 			pszOut=TmpBuf;
 
+			DEBUGMSG(1, (L"Searching adapters\n"));
 			//no string classes used, so no MFC or ATL dependency.
 			for(pszStr=(LPWSTR)pvBuf; *pszStr; pszStr+=wcslen(pszStr)+1)
 			{
+				DEBUGMSG(1, (L"\tfound '%s'\n", pszStr));
 				//check if adapter name is ok, skip infrared, gprs, ActiveSync etc.
 				if( wcsicmp(pszStr, L"ASYNCMAC1") && \
 					wcsicmp(pszStr, L"IRSIR1") && \
@@ -62,7 +64,8 @@ bool retval;
 					wcsicmp(pszStr, L"RNDISFN1") && \
 					wcsicmp(pszStr, L"WWAN1") && \
 					wcsicmp(pszStr, L"XSC1_IRDA1") && \
-					wcsicmp(pszStr, L"BTPAN1")
+					wcsicmp(pszStr, L"BTPAN1") && \
+					wcsicmp(pszStr, L"TIWLNAPI1") //not DSFLTR_TIWLNAPI1 ??? strange
 					)
 				{						
 					//not the first adapter?
