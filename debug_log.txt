@@ -1,0 +1,116 @@
+2011-11-10 6:52:38:851 BrowserUI : Start loading
+2011-11-10 6:52:39:369 Opening URL : http://199.64.70.66/www/MyDevinfo/
+2011-11-10 6:52:39:482 Loading...  12% (1kB/1kB)
+2011-11-10 6:52:39:914 Loading...  100% (2kB/2kB)
+2011-11-10 6:52:39:956 FrameLoaderClientZk : Page load finished
+2011-11-10 6:52:39:979 BrowserUI : page load finish
+2011-11-10 6:52:39:996 toggleLoadStopElement
+2011-11-10 6:52:43:86 BrowserUI : Start loading
+2011-11-10 6:52:43:288 Opening URL : http://199.64.70.66/www/MyDevinfo/MyDevinfo_simple.htm
+2011-11-10 6:52:43:620 Plugin Directory - \Program Files\HTML5 Browser\Plugins
+2011-11-10 6:52:43:685 Loading...  90% (1kB/1kB)
+Load module: npmydevinfo.dll
+2011-11-10 6:52:44:129 PluginPackage load success
+2011-11-10 6:52:44:138 PluginPackage::load - OK
+NPP_New...
+CMyDevinfoPlugin()...
+AllocateMyDevinfoPluginObject()...
+2011-11-10 6:52:44:188 Loading...  100% (1kB/1kB)
+2011-11-10 6:52:44:199 FrameLoaderClientZk : Page load finished
+2011-11-10 6:52:44:285 BrowserUI : page load finish
+2011-11-10 6:52:44:297 toggleLoadStopElement
+Construct()...
+AllocateMyDevinfoPluginObject()...
+OEMIoControl: Unsupported Code 0x10122c4 - device 0x0101 func 2225
+Get Model failed: 50
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-45
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-45
+Sensor Monitor Thread Starting
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-60
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-60
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-60
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-60
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-66
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-66
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-66
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-66
+OEMIoControl: Unsupported Code 0x10122c4 - device 0x0101 func 2225
+Get Model failed: 50
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-46
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-46
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-46
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-46
++++ BatteryLifePercent=72
+Searching adapters
+	found 'DSFLTR_TIWLNAPI1'
+	found 'L2TP1'
+	found 'PPTP1'
+	found 'IRSIR1'
+	found 'ASYNCMAC1'
+	found 'TIWLNAPI1'
+calling GetSignalStrength() for 'DSFLTR_TIWLNAPI1'
+DeviceIoControl OK, RSSI=-46
+... GetSignalStrength() iRes=0 for 'DSFLTR_TIWLNAPI1', RSSI=-46
