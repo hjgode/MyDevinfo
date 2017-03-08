@@ -1,6 +1,8 @@
 #include "devinfo.h"
 #include "oemioctl.h"
 
+#include "regMyDevInfo.h"
+
 TCHAR modelCode[MAX_BUFF];
 char modelCodeA[MAX_BUFF];
 
@@ -27,7 +29,9 @@ char* getModelCode(){
 		sprintf(modelCodeA, "%s", (char*)buf);
 	}
 	else{
-		DEBUGMSG(1, (L"Get Model failed: %i\n", GetLastError()));
+		DEBUGMSG(1, (L"Get Model failed: %i\nUsing registry...", GetLastError()));
+		wsprintf(modelCode, L"%s", getModelInfo());
+		wcstombs(modelCodeA, modelCode, MAX_BUFF);
 	}
 	return modelCodeA;
 }

@@ -256,13 +256,14 @@ DWORD MyDevinfoPluginObject::SensorMonitorThread(LPVOID lpParameter)
 	DWORD dwEvent;
 	HANDLE hWaitHandles[1];
 	hWaitHandles[0] = pSensor->m_hStopSensorMonitor;
-	DEBUGMSG(TRUE, (L"Sensor Monitor Thread Starting\n"));
+	DEBUGMSG(TRUE, (L"########## Sensor Monitor Thread Starting\n"));
 
 	while (true)
 	{
 		//  Wait for an exit event (indicating stop the thread) or timeout
 		//  Note if we change the timeout value we have to wait until the next cycle
 		//  before the new timeout value is read... this is just an example.
+
 		dwEvent = WaitForMultipleObjects(
 			1,
 			hWaitHandles,
@@ -272,10 +273,12 @@ DWORD MyDevinfoPluginObject::SensorMonitorThread(LPVOID lpParameter)
 		{
 		case WAIT_OBJECT_0:
 			{
+				DEBUGMSG(1, (L"########## timer thread exit signaled\n"));
 				goto _exitThread;
 			}
 		case WAIT_TIMEOUT:
 			{
+				DEBUGMSG(1, (L"########## timer thread update...\n"));
 				//  Create a fake sensor reading to send to the page
 				//char szSensorReading[512];
 				//if (pSensor->m_iSensorType == 0)
@@ -297,14 +300,14 @@ DWORD MyDevinfoPluginObject::SensorMonitorThread(LPVOID lpParameter)
 				//PostMessage(pSensor->hWindow, WM_USER + 1, (WPARAM)pSensor, (LPARAM)szSensorReading);
 
 				CombinedMessage stMessage;
-				stMessage.iBatt=getBatteryPercent();
 				stMessage.iRSSI=my_getRSSI();
+				stMessage.iBatt=getBatteryPercent();
 				PostMessage(pSensor->hWindow, WM_USER + 2, (WPARAM)pSensor, (LPARAM)&stMessage);
 			}
 		}  //  End Switch
 	}	//  End While !exitThread
 _exitThread:
-	DEBUGMSG(TRUE, (L"Sensor Monitor Thread Exiting\n"));
+	DEBUGMSG(TRUE, (L"########## Sensor Monitor Thread Exiting\n"));
 	return 0;
 }
 

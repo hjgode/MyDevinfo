@@ -1,5 +1,7 @@
 #include "WifiPeek.h"
 
+#include "regMyDevInfo.h"
+
 //////////////////////////////////////////////////////////////////////////
 CWifiPeek::CWifiPeek()
 {
@@ -36,8 +38,14 @@ bool retval;
 		return false;
 	}
 
-	EnterCriticalSection(&m_Lock);
 	retval=false;
+	TCHAR* wifiname = getWifiAdapterName();
+	if( wcslen(wifiname)>0 && wcslen(wifiname)<dwBufSizeBytes ){
+		wsprintf(pDest, L"%s", wifiname);
+		dwBufSizeBytes=wcslen(wifiname);
+		return TRUE;
+	}
+	EnterCriticalSection(&m_Lock); //DO NOT EXIT function without leaving the LOCK!
 	//open NDIS driver
 	hFile=CreateFile(L"NDS0:", GENERIC_READ | GENERIC_WRITE, FILE_SHARE_READ | FILE_SHARE_WRITE, NULL, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, INVALID_HANDLE_VALUE);
 	if(hFile != INVALID_HANDLE_VALUE)
@@ -52,6 +60,7 @@ bool retval;
 			pszOut=TmpBuf;
 
 			DEBUGMSG(1, (L"Searching adapters\n"));
+			//HKEY_LOCAL_MACHINE\System\State\Connections\Network:Adapters
 			//no string classes used, so no MFC or ATL dependency.
 			for(pszStr=(LPWSTR)pvBuf; *pszStr; pszStr+=wcslen(pszStr)+1)
 			{

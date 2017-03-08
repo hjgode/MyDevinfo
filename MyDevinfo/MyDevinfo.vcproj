@@ -342,7 +342,7 @@
 			<Tool
 				Name="VCLinkerTool"
 				AdditionalOptions=" /subsystem:windowsce,5.00"
-				OutputFile="../bin/npmysensor.dll"
+				OutputFile="../bin/npmydevinfo.dll"
 				LinkIncremental="1"
 				ModuleDefinitionFile="MyDevinfo.def"
 				DelayLoadDLLs="$(NOINHERIT)"
@@ -431,6 +431,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\regMyDevInfo.cpp"
+				>
+			</File>
+			<File
 				RelativePath="..\Common\ScriptablePluginObjectBase.cpp"
 				>
 			</File>
@@ -478,6 +482,10 @@
 			</File>
 			<File
 				RelativePath="..\Common\nullplugin.h"
+				>
+			</File>
+			<File
+				RelativePath=".\regMyDevInfo.h"
 				>
 			</File>
 			<File

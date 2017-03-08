@@ -82,6 +82,7 @@ int my_getRSSI(){
 	uRes=GetCurrentValue();
 	if(uRes>UNKNOWERROR)
 		m_currentRSSI=(int)uRes;
+	DEBUGMSG(1, (L"+++ my_getRSSI=%i\n", m_currentRSSI));
 	return m_currentRSSI;
 }
 
