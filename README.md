@@ -4,6 +4,8 @@ Windows Mobile 6.x HTML5 NPAPI plugin
 Visual Studio 2008
 Windows Mobile 6 Prof. SDK
 
+![screen shot](https://github.com/hjgode/MyDevinfo/raw/master/NPAPI_simple2.png)
+
 HTML5 Browser
 
 This plugin offers a NPAPI object to retrieve the Model Code, RSSI, Battery Level of a supported device.
