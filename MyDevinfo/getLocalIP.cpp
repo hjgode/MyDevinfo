@@ -22,8 +22,8 @@ char* my_getLocalIP()
     MultiByteToWideChar(CP_ACP, 0,_szLocalIP , -1,pWideCharStr , sizeof(pWideCharStr) / sizeof(wchar_t));
 
     //MultiByteToWideChar(CP_UTF8, MB_COMPOSITE,szLocalIP , 32, pWideCharStr,32);
-    MessageBox(NULL,pWideCharStr, TEXT("IP address"), MB_OK|MB_ICONERROR);
-
+    //MessageBox(NULL,pWideCharStr, TEXT("IP address"), MB_OK|MB_ICONERROR);
+	DEBUGMSG(1, (L"getLocalIP='%s'", pWideCharStr));
     WSACleanup();
     return szLocalIP;
 }
