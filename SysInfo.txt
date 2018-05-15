@@ -1,0 +1,183 @@
+		
+SYSTEM DATE/TIME		
+-------------------------		
+Date	11/10/2011	Date.
+Time	02:00:41	Time.
+		
+SYSTEM INFO		
+-------------------------		
+Hardware Revision	6	Specifies the hardware revision.
+OS Version	WM65 (5.2.29299)	Specifies the Operating System version.
+Kernel	26.07 (FEB 13, 2015)	Specifies the Kernel version.
+Service Pack	NONE	Specifies the Service Pack level.
+IPL	26.07 (FEB 13, 2015)	Specifies the Boot Loader version.
+Keyboard Firmware	26.07	Specifies the Keyboard firmware version.
+Camera ID	OV3640	Specifies the camera sensor model number
+GPS Firmware	6.02 (36023)	Specifies the GPS firmware version.
+Manufacture Date	20110613	Specifies the manufacture date.
+Model Number	99EX	Specifies the model number.
+Part Number	99EXLG3-GC112XE	Specifies main board part number.
+Terminal Serial Number	11164D015F	Specifies the terminal serial number.
+Configuration Number	99EXLG3-GC112XE	Specifies the unit configuration number.
+Keyboard Type	55-key	Specifies the Keyboard type.
+Scanner Type	N5603	Specifies the scanner type.
+Display Type	Casio	Specifies the display type.
+		
+CPU INFO		
+-------------------------		
+ProcessorName	OMAP37XX	Specifies the name of the CPU
+Architecture	ARM	Specifies the systems processor architecture.
+ProcessorLevel	4	Specifies the systems architecture-dependent processor level.
+Processor Frequency	1000 Mhz	Specifies the systems processor operating frequency.
+		
+DLL VERSION INFO		
+-------------------------		
+Decoder.dll	3.24	Current Decoder.dll api build revision.
+Matrix Engine	2013.4.702	Current Matrix engine build revision.
+Decoder Secondary Revision	2012.12.103	Current Secondary Decoder revision
+Decoder Control Logic Version	2013.10.577	Current Decoder Control Logic revision
+DecThreads Version	2013.10.4486	Current DecThreads revision
+HHPScanInterface.dll	1.36	Current HHPScanInterface.dll api build revision.
+Scan Driver	1.807	Current scan driver build revision.
+HHPJADEHW.dll	2.02.04	Current HHPJADEHW.dll api build revision.
+ImgApi.dll	3.00.01	Current ImgApi.dll api build revision.
+DibCE.dll	2.04.00	Current DibCE.dll api build revision.
+		
+SYSTEM PARAMETERS		
+-------------------------		
+BatteryIdleTimeout	60	
+ExternalIdleTimeout	0	
+OEMInfo	99EX. Honeywell	
+PlatformType	PocketPC	
+		
+NETWORK INFO		
+-------------------------		
+Hostname	ID11164D015F	
+NumberOfAdapters	2	
+1: Mac Address	00102055FE7D	
+1: IP Address	199.64.70.114	
+2: Mac Address	000000000000	
+2: IP Address	192.168.55.101	
+		
+RADIO INFO		
+-------------------------		
+WiFi Hardware:	TI 1273 802.11a/b/g/n radio	Type of WiFi hardware
+WiFi State:	On	WiFi hardware power state
+Bluetooth Hardware:	Murata BT ver.2.1 + EDR	Type of Bluetooth hardware
+Bluetooth State:	Off	Bluetooth hardware power state
+GSM Hardware:	Gobi 3000 module	Type of GSM hardware
+GSM State:	On	GSM hardware power state
+		
+Power Tools And Demos		
+-------------------------		
+Power Tools Version	5.16	Power Tools Cab Version
+Demos Version	5.16	Demos Cab Version
+		
+\Program Files\Power Tools		
+-------------------------		
+Reboot.exe	5.10.01.2	
+HotKeys.exe	5.16.30001	
+EZConfig Editor PPC.exe	1.00.07.7	
+RegEdit.exe	5.10.01	
+BootstrapAgent.exe	Not Available	
+EZMenu.exe	5.16.03	
+NoSIP.exe	5.10.01	
+IPConfig.exe	5.10.01.1	
+ImageProfiler.exe	3.21.30001	
+BattMon.exe	5.16.30001	
+KeyboardStatus.exe	5.16.30001	
+IrDAPrintCE.exe	5.10.01	
+BatteryAnalyzer.exe	5.10.01	
+Ping.exe	5.10.01.1	
+WiFiStatus.exe	5.16.30001	
+Route.exe	5.10.01.1	
+XMLMerger.exe	5.10.01.1	
+ScanWedge.exe	5.16.30001	
+SysInfo.exe	5.16.30001	
+BTPrint.exe	5.10.01	
+Suspend.exe	5.10.01	
+		
+\Honeywell\		
+-------------------------		
+Autorun.exe	5.10.01	
+AutoInstall.exe	5.10.01	
+EZConfigPPC.exe	1.00.04.1	
+DeviceConfig.exe	5.10.01.8	
+PowerToolsMenu.exm	1	
+CameraDemo.exm	0	
+scanwedge.exm	3	
+IQImageDemo.exe.config.exm	0	
+DemoRfSettings.exm	0	
+ImagingProfiles.exm	0	
+PrintDemoMenu.exm	1	
+DemosMenu.exm	1	
+DeviceConfig.exm	6	
+NetworkMenu.exm	1	
+BatteryAnalyzer.exm	3	
+CAConfig.exm	0	
+SignatureCapture.exm	0	
+EZConfigMenu.exm	1	
+HTML5Browser.exm	0	
+ScanDemo.exe.config.exm	0	
+Autorun.exm	23	
+RegBackup.exm	0	
+AutoInstall.exm	3	
+ImageDemo.exe.config.exm	0	
+		
+\IPSM\Honeywell\AutoInstall\*.*		
+-------------------------		
+File(1): 	SP_PowerTools_516.3.wm.armv4i.CAB	
+File(2): 	PowerTools_516.wm.armv4i.CAB	
+File(3): 	Gobi_99EX_24.CAB	
+File(4): 	SDKNC_321.wm.armv4i.CAB	
+File(5): 	BT_D99EX_7.CAB	
+File(6): 	WLAN_D99EX_22.CAB	
+File(7): 	GobiSDK_2905_114.CAB	
+File(8): 	DefaultSettings.reg	
+File(9): 	Ds172_35.wm.armv4i.CAB	
+File(10): 	GobiFirmware3K_4.CAB	
+File(11): 	Demos_516.wm.armv4i.CAB	
+File(12): 	REM_BootStrap_10.00.1.762.cab	
+File(13): 	CameraDemo_516.wm.armv4i.CAB	
+		
+POWER STATUS		
+-------------------------		
+ACLineStatus	AC online	AC power status.
+BatteryFlag	Charging	Battery charge status.
+BatteryLifePercent	100 %	Percentage of full battery charge remaining.
+BackupBatteryFlag	High	Backup battery charge status.
+BackupBatteryLifePercent	100 %	Percentage of full backup battery charge remaining.
+		
+STORE INFO		
+-------------------------		
+StoreSize	758022144	Specifies the size in bytes of the object store.
+FreeSize	662272000	Specifies the amount of free space in bytes in the object store.
+		
+SYSTEM VERSION		
+-------------------------		
+MajorVersion	5	
+MinorVersion	2	
+BuildNumber	29299	
+PlatformId	3	
+CSDVersion		Indicates the latest Service Pack installed on the system.
+		
+GLOBAL MEMORY STATUS		
+-------------------------		
+MemoryLoad	50	Specifies a number between 0 and 100 that gives a general idea of current memory utilization in which 0 indicates no memory use and 100 indicates full memory use.
+TotalPhysical	241172480	Indicates the total number of bytes of physical memory.
+TotalPageFile	0	Indicates the number of bytes of physical memory available.
+AvailPageFile	0	Indicates the total number of bytes that can be stored in the paging file.
+TotalVirtual	33554432	Indicates the total number of bytes that can be described in the user mode portion of the virtual address space of the calling process.
+AvailVirtual	27983872	Indicates the number of bytes of unreserved and uncommitted memory in the user mode portion of the virtual address space of the calling process.
+		
+IMAGER INFO		
+-------------------------		
+PSOC Version	6.11	Current PSOC revision.
+AimerXoffset	425	Indicates the imagers AimerXoffset
+AimerYoffset	314	Indicates the imagers AimerYoffset
+BitsPerPixel	8	Indicates the imagers BitsPerPixel
+EngineID	12	Indicates the imagers EngineID
+ImagerCols	832	Indicates the imagers ImagerCols
+ImagerRows	640	Indicates the imagers ImagerRows
+Rotation	0	Indicates the imagers Rotation
+YDepth	0	Indicates the imagers YDepth

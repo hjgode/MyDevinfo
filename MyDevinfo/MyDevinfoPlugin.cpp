@@ -8,6 +8,7 @@
 #include "getRSSI.h"
 #include "battery.h"
 #include "devinfo.h"
+#include "getLocalIP.h"
 
 /*
 properties
@@ -34,6 +35,7 @@ static NPIdentifier sCurrentValue_id;
 static NPIdentifier sCurrentRSSIValue_id;
 static NPIdentifier sCurrentBattery_id;
 static NPIdentifier sModelCode_id;
+static NPIdentifier sLocalIP_id;
 
 static NPObject * AllocateMyDevinfoPluginObject(NPP npp, NPClass *aClass)
 {
@@ -117,7 +119,8 @@ bool MyDevinfoPluginObject::HasProperty(NPIdentifier name)
 //			name == sSensorType_id ||
 			name == sCurrentRSSIValue_id ||
 			name == sCurrentBattery_id ||
-			name == sModelCode_id
+			name == sModelCode_id ||
+			name == sLocalIP_id
 			);
 }
 
@@ -158,6 +161,17 @@ bool MyDevinfoPluginObject::GetProperty(NPIdentifier name, NPVariant *result)
 		//  Return the value to the web page.
 		char* npOutString = (char *)NPN_MemAlloc(MAX_BUFF);
 		sprintf(npOutString, "%s", getModelCode());
+		//pMyDevinfoPlugin
+
+		STRINGZ_TO_NPVARIANT( npOutString , *result);// (((float)this->m_iCurrentValue) / 100.0, *result);
+		bReturnVal = true;
+	}
+	else if (name == sLocalIP_id)
+	{
+		//  Called by: var sensorVal = myDevinfo.modelCode;
+		//  Return the value to the web page.
+		char* npOutString = (char *)NPN_MemAlloc(MAX_BUFF);
+		sprintf(npOutString, "%s", my_getLocalIP());
 		//pMyDevinfoPlugin
 
 		STRINGZ_TO_NPVARIANT( npOutString , *result);// (((float)this->m_iCurrentValue) / 100.0, *result);
@@ -302,6 +316,7 @@ DWORD MyDevinfoPluginObject::SensorMonitorThread(LPVOID lpParameter)
 				CombinedMessage stMessage;
 				stMessage.iRSSI=my_getRSSI();
 				stMessage.iBatt=getBatteryPercent();
+				printf(stMessage.localIP, '%s', my_getLocalIP());
 				PostMessage(pSensor->hWindow, WM_USER + 2, (WPARAM)pSensor, (LPARAM)&stMessage);
 			}
 		}  //  End Switch
@@ -366,6 +381,7 @@ CMyDevinfoPlugin::CMyDevinfoPlugin(NPP pNPInstance) :
 	sCurrentRSSIValue_id = NPN_GetStringIdentifier("currentRSSIValue");
 	sCurrentBattery_id = NPN_GetStringIdentifier("currentBatteryLevel");
 	sModelCode_id = NPN_GetStringIdentifier("modelCode");
+	sLocalIP_id = NPN_GetStringIdentifier("localIP");
 
 //	sSensorType_id = NPN_GetStringIdentifier("myType");
 
@@ -405,9 +421,10 @@ void MyDevinfoPluginObject::MessageToUser(CombinedMessage* combinedMessage)
 	//  Create the arguments to call 'addSensorOutput' with
 	INT32_TO_NPVARIANT(combinedMessage->iBatt, arg[0]);
 	INT32_TO_NPVARIANT(combinedMessage->iRSSI, arg[1]);
+	STRINGZ_TO_NPVARIANT(combinedMessage->localIP, arg[2]);
 
 	//  Invoke the Javascript function on the page
-	NPN_InvokeDefault(mNpp, NPVARIANT_TO_OBJECT(functionval), arg, 2, &rval);
+	NPN_InvokeDefault(mNpp, NPVARIANT_TO_OBJECT(functionval), arg, 3, &rval);
 	//  Clean up allocated memory
 	NPN_ReleaseVariantValue(&functionval);
 	NPN_ReleaseVariantValue(&rval);

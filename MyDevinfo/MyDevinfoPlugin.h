@@ -9,6 +9,7 @@
 struct CombinedMessage{
 	int iRSSI;
 	int iBatt;
+	char localIP[16];
 };
 
 class CMyDevinfoPlugin

@@ -52,6 +52,12 @@ The RSSI in dBm is returned by the following property
 
     devinfoObj.currentRSSIValue
     
+### get Local IP address
+
+The first local IP address returned by following property
+
+	devinfoObj.localIP
+	
 ### Periodic update callback
 
 Setting an interval and enabling the monitor will call the javascript function periodically

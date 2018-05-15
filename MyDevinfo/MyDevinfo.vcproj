@@ -403,6 +403,10 @@
 				>
 			</File>
 			<File
+				RelativePath=".\getLocalIP.cpp"
+				>
+			</File>
+			<File
 				RelativePath=".\GetRSSI.cpp"
 				>
 			</File>
@@ -450,6 +454,10 @@
 			</File>
 			<File
 				RelativePath=".\devinfo.h"
+				>
+			</File>
+			<File
+				RelativePath=".\getLocalIP.h"
 				>
 			</File>
 			<File
