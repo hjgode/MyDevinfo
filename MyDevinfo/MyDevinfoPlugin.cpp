@@ -19,6 +19,8 @@ properties
 	currentRSSIValue	returns current RSSI as dBm (ie: -45)
 	currentBatteryLevel	returns current battery life percent (0-100)
 	modelCode			returns model code as string (ie "CK3XAA")
+	localIP				returns first local IP
+	localMAC			returns first local MAC
 
 callback methods
 	onBattRssiUpdate(batt, rssi){}
