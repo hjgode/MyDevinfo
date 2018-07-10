@@ -60,6 +60,12 @@ The first local IP address returned by following property
 
 	devinfoObj.localIP
 	
+### get Local IP address
+
+The first local MAC address returned by following property
+
+	devinfoObj.localMAC
+  
 ### Periodic update callback
 
 Setting an interval and enabling the monitor will call the javascript function periodically

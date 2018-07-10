@@ -19,6 +19,7 @@ function onBattRssiUpdate(batt, rssi)
     document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
     document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
     document.getElementById("LocalIP").innerHTML = devinfoObj.localIP;
+    document.getElementById("LocalMAC").innerHTML = devinfoObj.localMAC;
 }
 
 function update() {
@@ -26,6 +27,7 @@ function update() {
     document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
     document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
     document.getElementById("LocalIP").innerHTML = devinfoObj.localIP;
+    document.getElementById("LocalMAC").innerHTML = devinfoObj.localMAC;
 }
 
 function olinit() {
@@ -39,6 +41,7 @@ function olinit() {
             document.getElementById("Battery").innerHTML = devinfoObj.currentBatteryLevel;
             document.getElementById("Rssi").innerHTML = devinfoObj.currentRSSIValue;
             document.getElementById("LocalIP").innerHTML = devinfoObj.localIP;
+            document.getElementById("LocalMAC").innerHTML = devinfoObj.localMAC;
             devinfoObj.pollInterval = 30000; //update all 30 seconds
             devinfoObj.monitor(true);
         }
@@ -60,6 +63,7 @@ ModelCode:<div id="ModelCode"></div><br>
 Battery:<div id="Battery"></div><br>
 RSSI:<div id="Rssi"></div><br>
 LocalIP:<div id="LocalIP"></div><br />
+LocalMAC:<div id="LocalMAC"></div><br />
 <input type=button value="update" onclick="update();" />
 </BODY>
 </HTML> 

@@ -30,3 +30,23 @@ char* my_getLocalIP()
     WSACleanup();
     return szLocalIP;
 }
+
+char* my_getLocalMAC(){	
+	// Get a handle to the 80211 API
+	if(h802lib == NULL)
+		h802lib = LoadLibrary(_T("80211api.dll"));
+	if(h802lib != NULL && GetMac == NULL){
+		GetMac = (PFN_GetMac)GetProcAddress(h802lib, _T("GetMac"));
+	}
+	static TCHAR our_mac[128];
+	static char our_mac_c[128];
+	wsprintf(our_mac, L"");
+
+	if(GetMac!=NULL){
+		GetMac(our_mac);
+	}else{
+		wsprintf(our_mac, L"no80211api");
+	}
+	wcstombs(our_mac_c, our_mac, 128);
+	return our_mac_c;
+}

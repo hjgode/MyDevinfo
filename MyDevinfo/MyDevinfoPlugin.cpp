@@ -36,6 +36,7 @@ static NPIdentifier sCurrentRSSIValue_id;
 static NPIdentifier sCurrentBattery_id;
 static NPIdentifier sModelCode_id;
 static NPIdentifier sLocalIP_id;
+static NPIdentifier sLocalMAC_id;
 
 static NPObject * AllocateMyDevinfoPluginObject(NPP npp, NPClass *aClass)
 {
@@ -100,6 +101,9 @@ bool MyDevinfoPluginObject::Construct(const NPVariant *args, uint32_t argCount,
 MyDevinfoPluginObject::~MyDevinfoPluginObject()
 {
 	SetEvent(m_hStopSensorMonitor);
+	//unload GetMac getLocalMAC
+	if(h802lib!=NULL)
+		FreeLibrary(h802lib);
 }
 
 
@@ -120,7 +124,8 @@ bool MyDevinfoPluginObject::HasProperty(NPIdentifier name)
 			name == sCurrentRSSIValue_id ||
 			name == sCurrentBattery_id ||
 			name == sModelCode_id ||
-			name == sLocalIP_id
+			name == sLocalIP_id ||
+			name == sLocalMAC_id
 			);
 }
 
@@ -172,6 +177,17 @@ bool MyDevinfoPluginObject::GetProperty(NPIdentifier name, NPVariant *result)
 		//  Return the value to the web page.
 		char* npOutString = (char *)NPN_MemAlloc(MAX_BUFF);
 		sprintf(npOutString, "%s", my_getLocalIP());
+		//pMyDevinfoPlugin
+
+		STRINGZ_TO_NPVARIANT( npOutString , *result);// (((float)this->m_iCurrentValue) / 100.0, *result);
+		bReturnVal = true;
+	}
+	else if (name == sLocalMAC_id)
+	{
+		//  Called by: var sensorVal = myDevinfo.modelCode;
+		//  Return the value to the web page.
+		char* npOutString = (char *)NPN_MemAlloc(MAX_BUFF);
+		sprintf(npOutString, "%s", my_getLocalMAC());
 		//pMyDevinfoPlugin
 
 		STRINGZ_TO_NPVARIANT( npOutString , *result);// (((float)this->m_iCurrentValue) / 100.0, *result);
@@ -382,6 +398,7 @@ CMyDevinfoPlugin::CMyDevinfoPlugin(NPP pNPInstance) :
 	sCurrentBattery_id = NPN_GetStringIdentifier("currentBatteryLevel");
 	sModelCode_id = NPN_GetStringIdentifier("modelCode");
 	sLocalIP_id = NPN_GetStringIdentifier("localIP");
+	sLocalMAC_id = NPN_GetStringIdentifier("localMAC");
 
 //	sSensorType_id = NPN_GetStringIdentifier("myType");
 
